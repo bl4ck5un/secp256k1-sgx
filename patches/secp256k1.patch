@@ -1,8 +1,8 @@
-diff --git src/ecmult_impl.h src/ecmult_impl.h
-index 4e40104..189b8c4 100644
---- src/ecmult_impl.h
-+++ src/ecmult_impl.h
-@@ -29,15 +29,27 @@
+diff --git a/src/ecmult_impl.h b/src/ecmult_impl.h
+index c00578b..4538bd7 100644
+--- a/src/ecmult_impl.h
++++ b/src/ecmult_impl.h
+@@ -30,15 +30,27 @@
  #  endif
  #else
  /* optimal for 128-bit and 256-bit exponents. */
@@ -30,11 +30,11 @@ index 4e40104..189b8c4 100644
  #endif
  #endif
  
-diff --git src/secp256k1.c src/secp256k1.c
-index a709bea..3b3b650 100644
---- src/secp256k1.c
-+++ src/secp256k1.c
-@@ -25,10 +25,12 @@
+diff --git a/src/secp256k1.c b/src/secp256k1.c
+index a1e3908..f791cb6 100644
+--- a/src/secp256k1.c
++++ b/src/secp256k1.c
+@@ -26,10 +26,12 @@
      } \
  } while(0)
  
@@ -49,7 +49,7 @@ index a709bea..3b3b650 100644
  }
  
  static const secp256k1_callback default_illegal_callback = {
-@@ -38,8 +40,7 @@ static const secp256k1_callback default_illegal_callback = {
+@@ -39,8 +41,7 @@ static const secp256k1_callback default_illegal_callback = {
  
  static void default_error_callback_fn(const char* str, void* data) {
      (void)data;
@@ -59,3 +59,27 @@ index a709bea..3b3b650 100644
  }
  
  static const secp256k1_callback default_error_callback = {
+diff --git a/src/util.h b/src/util.h
+index e014750..6f468db 100644
+--- a/src/util.h
++++ b/src/util.h
+@@ -24,14 +24,17 @@ static SECP256K1_INLINE void secp256k1_callback_call(const secp256k1_callback *
+     cb->fn(text, (void*)cb->data);
+ }
+ 
++
++extern int printf_std(const char *fmt, ...);
++
+ #ifdef DETERMINISTIC
+ #define TEST_FAILURE(msg) do { \
+-    fprintf(stderr, "%s\n", msg); \
++    printf_std("%s\n", msg); \
+     abort(); \
+ } while(0);
+ #else
+ #define TEST_FAILURE(msg) do { \
+-    fprintf(stderr, "%s:%d: %s\n", __FILE__, __LINE__, msg); \
++    printf_std("%s:%d: %s\n", __FILE__, __LINE__, msg); \
+     abort(); \
+ } while(0)
+ #endif
