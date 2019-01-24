@@ -6,13 +6,20 @@ BASE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}")" && pwd )
 
 pushd ${BASE_DIR}
 
-test -d secp256k1 && rm -rf secp256k1
+test -d dist && rm -rf dist
 
-git clone https://github.com/bitcoin-core/secp256k1
+git clone https://github.com/bitcoin-core/secp256k1 dist
 
-pushd secp256k1
-# git checkout 119949232a243396ba1462676932a11022592b59
+pushd dist
+git checkout e34ceb333b1c0e6f4115ecbb80c632ac1042fa49
 patch -p0 < ../patches/secp256k1.patch
-popd
 
+cat << EOF >> CHANGELOG.md
+Added by bl4ck5unxx@gmail.com.
+
+$(date): port the library to Intel SGX. Read the instructions [here](github.com/bl4ck5un/secp256k1-sgx).
+EOF
+
+rm -rf .git
+popd
 popd
