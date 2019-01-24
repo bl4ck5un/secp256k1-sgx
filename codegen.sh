@@ -3,14 +3,15 @@
 set -e
 
 BASE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}")" && pwd )
+OUTDIR_NAME=sgx
 
 pushd ${BASE_DIR}
 
-test -d dist && rm -rf dist
+test -d ${OUTDIR_NAME} && rm -rf ${OUTDIR_NAME}
 
-git clone https://github.com/bitcoin-core/secp256k1 dist
+git clone https://github.com/bitcoin-core/secp256k1 ${OUTDIR_NAME}
 
-pushd dist
+pushd ${OUTDIR_NAME}
 git checkout e34ceb333b1c0e6f4115ecbb80c632ac1042fa49
 patch -p0 < ../patches/secp256k1.patch
 
