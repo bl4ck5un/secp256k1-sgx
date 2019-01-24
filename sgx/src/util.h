@@ -24,14 +24,17 @@ static SECP256K1_INLINE void secp256k1_callback_call(const secp256k1_callback * 
     cb->fn(text, (void*)cb->data);
 }
 
+
+extern int printf_std(const char *fmt, ...);
+
 #ifdef DETERMINISTIC
 #define TEST_FAILURE(msg) do { \
-    fprintf(stderr, "%s\n", msg); \
+    printf_std("%s\n", msg); \
     abort(); \
 } while(0);
 #else
 #define TEST_FAILURE(msg) do { \
-    fprintf(stderr, "%s:%d: %s\n", __FILE__, __LINE__, msg); \
+    printf_std("%s:%d: %s\n", __FILE__, __LINE__, msg); \
     abort(); \
 } while(0)
 #endif

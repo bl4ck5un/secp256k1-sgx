@@ -13,7 +13,7 @@ git clone https://github.com/bitcoin-core/secp256k1 ${OUTDIR_NAME}
 
 pushd ${OUTDIR_NAME}
 git checkout e34ceb333b1c0e6f4115ecbb80c632ac1042fa49
-patch -p0 < ../patches/secp256k1.patch
+patch -p1 < ../patches/secp256k1.patch
 
 cat << EOF >> CHANGELOG.md
 Added by bl4ck5unxx@gmail.com.
