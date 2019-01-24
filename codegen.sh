@@ -18,7 +18,7 @@ patch -p0 < ../patches/secp256k1.patch
 cat << EOF >> CHANGELOG.md
 Added by bl4ck5unxx@gmail.com.
 
-$(date): port the library to Intel SGX. Read the instructions [here](github.com/bl4ck5un/secp256k1-sgx).
+$(date): port the library to Intel SGX. Read the instructions [here](http://github.com/bl4ck5un/secp256k1-sgx).
 EOF
 
 rm -rf .git
